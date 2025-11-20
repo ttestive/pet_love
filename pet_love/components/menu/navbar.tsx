@@ -20,8 +20,7 @@ const navItems = [
 ];
 
 export function Navbar() {
-  // Simulação da URL atual para destacar o link ativo
-  const currentPath = '/'; // Você usaria usePathname() do next/navigation
+  const currentPath = '/'; 
 
   return (
     <header className="sticky top-0 z-50 w-full bg-blue-400/90 backdrop-blur-sm border-b border-blue-500 shadow-md">
@@ -29,7 +28,6 @@ export function Navbar() {
         {/* Logotipo e Menu Hambúrguer (Mobile) */}
         <div className="flex items-center space-x-4">
           
-          {/* Menu Hambúrguer (visível apenas em telas pequenas) */}
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
               <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
@@ -51,13 +49,11 @@ export function Navbar() {
             </SheetContent>
           </Sheet>
           
-          {/* Logotipo */}
           <Link href="/" className="text-2xl font-bold text-white tracking-widest">
             PORTAL VET
           </Link>
         </div>
 
-        {/* Links de Navegação (Desktop) */}
         <nav className="hidden md:flex items-center space-x-6">
           {navItems.map((item) => (
             <NavigationLink
@@ -70,7 +66,6 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Avatar/Perfil do Usuário */}
         <div className="flex items-center">
           <Avatar className="h-9 w-9 border-2 border-white cursor-pointer hover:opacity-80 transition-opacity">
             <AvatarImage src="/images/cat-avatar.png" alt="User Avatar" /> {/* Ajuste o caminho da imagem */}

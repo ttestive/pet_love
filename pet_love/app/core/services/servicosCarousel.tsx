@@ -14,8 +14,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-// --- Dados dos Serviços ---
-// Mantemos os dados, mas agora usaremos apenas as imagens.
+
 const servicos = [
     { title: "CIRURGIA", imageUrl: "/images/cirurgia.jpg" }, 
     { title: "CONSULTAS", imageUrl: "/images/consultas.jpg" }, 
@@ -23,12 +22,8 @@ const servicos = [
     { title: "EXAMES", imageUrl: "/images/exames.jpg" },
 ];
 
-// O SEU COMPONENTE ORIGINAL COM AS ALTERAÇÕES SOLICITADAS
 export function CarouselDemo() {
-    // A lógica de estado 'current' e 'api' NÃO é mais necessária
-    // para o estilo de foco, mas pode ser útil para outras funções.
-    // Vou removê-la para simplificar, já que não precisamos do efeito 'cover flow'.
-    
+   
     return (
         <section className="py-16 bg-blue-50/70">
             {/* Títulos do Componente (Mantidos, pois são o texto fora do carrossel) */}
@@ -44,7 +39,7 @@ export function CarouselDemo() {
             {/* Carrossel */}
             <Carousel 
                 opts={{
-                    align: "start", // Alinhamento "start" é o padrão para um por vez
+                    align: "start", 
                     loop: true,
                 }}
                 className="w-full max-w-2xl mx-auto" // Diminui o carrossel na horizontal
@@ -80,7 +75,6 @@ export function CarouselDemo() {
                     ))}
                 </CarouselContent>
                 
-                {/* 4. Customização das Setas (Mantidas ao lado) */}
                 <CarouselPrevious className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 text-gray-800 bg-white/70 hover:bg-white border-none" />
                 <CarouselNext className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 text-gray-800 bg-white/70 hover:bg-white border-none" />
             </Carousel>
