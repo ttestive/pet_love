@@ -3,7 +3,8 @@
 'use client';
 
 import * as React from "react"
-import { cn } from "@/lib/utils" // Importe o utilitário cn do shadcn/ui
+import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -16,17 +17,17 @@ import {
 
 
 const servicos = [
-    { title: "CIRURGIA", imageUrl: "/images/cirurgia.jpg" }, 
-    { title: "CONSULTAS", imageUrl: "/images/consultas.jpg" }, 
-    { title: "VACINAS", imageUrl: "/images/vacinas.jpg" },
-    { title: "EXAMES", imageUrl: "/images/exames.jpg" },
+    { title: "CIRURGIA", imageUrl: "/carrousel/surgery_item.png", route: "/servicos/cirurgia" }, 
+    { title: "CONSULTAS", imageUrl: "/carrousel/schedule_item.jpg", route: "/servicos/consultas" }, 
+    { title: "VACINAS", imageUrl: "/carrousel/injection_item.jpg", route: "/servicos/vacinas" },
+    { title: "EXAMES", imageUrl: "/carrousel/exam_item.jpg", route: "/servicos/exames" },
 ];
 
 export function CarouselDemo() {
    
     return (
         <section className="py-16 bg-blue-50/70">
-            {/* Títulos do Componente (Mantidos, pois são o texto fora do carrossel) */}
+            {/* Títulos do Componente (Mantidos) */}
             <div className="text-center mb-10">
                 <h2 className="text-4xl font-semibold text-gray-800">
                     Conheça nossa Clínica
@@ -42,34 +43,44 @@ export function CarouselDemo() {
                     align: "start", 
                     loop: true,
                 }}
-                className="w-full max-w-2xl mx-auto" // Diminui o carrossel na horizontal
+                className="w-full max-w-2xl mx-auto"
             >
                 <CarouselContent className="">
-                    {/* Mantendo Array.from e index como solicitado */}
                     {Array.from({ length: servicos.length }).map((_, index) => (
                         <CarouselItem 
                             key={index} 
-                            // 🔑 ALTERAÇÃO CHAVE: Define o item para ocupar a largura total (1 por vez)
                             className="basis-full" 
                         >
                             <div className="p-1">
-                                <Card className="rounded-xl overflow-hidden shadow-xl h-96 w-full relative">
-                                    
-                                    {/* 1. Imagem de Fundo (Sem filtros ou desfoque) */}
-                                    <div 
-                                        className="absolute inset-0 bg-cover bg-center"
-                                        style={{ backgroundImage: `url(${servicos[index].imageUrl})` }}
-                                    />
-                                    
-                                    {/* 2. Camada Escura de Sobreposição (Leve) */}
-                                    <div className="absolute inset-0 bg-black/10" />
+                                <Link href={servicos[index].route}>
+                                    <Card className="rounded-xl overflow-hidden shadow-xl h-96 w-full relative cursor-pointer hover:shadow-2xl transition-shadow">
+                                        
+                                        <div 
+                                            className="absolute inset-0 bg-cover bg-center"
+                                            style={{ backgroundImage: `url(${servicos[index].imageUrl})` }}
+                                        />
+                                        
+                                        <div className="absolute inset-0 bg-black/30" />
 
-                                    {/* 3. Conteúdo (Títulos removidos de dentro do CardContent) */}
-                                    <CardContent className="flex items-center justify-center p-6 h-full relative">
-                                        {/* REMOVIDO: <span>{servicos[index].title}</span> */}
-                                        {/* O CardContent agora está vazio, apenas a imagem é exibida. */}
-                                    </CardContent>
-                                </Card>
+                                        <CardContent className="flex items-center justify-center p-6 h-full relative">
+                                            <span 
+                                                className="
+                                                    text-6xl 
+                                                    text-white 
+                                                    font-extrabold 
+                                                    tracking-wider 
+                                                    uppercase 
+                                                    leading-none 
+                                                    drop-shadow-lg
+                                                    hover:scale-110
+                                                    transition-transform
+                                                "
+                                            >
+                                                {servicos[index].title}
+                                            </span>
+                                        </CardContent>
+                                    </Card>
+                                </Link>
                             </div>
                         </CarouselItem>
                     ))}

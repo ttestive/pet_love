@@ -2,6 +2,7 @@
 
 import { Navbar } from '@/components/menu/navbar';
 import { CarouselDemo } from './core/services/servicosCarousel';
+import { Banner_home } from '@/components/static_fields/banner';
 
 export default function HomePage() {
   return (
@@ -12,7 +13,11 @@ export default function HomePage() {
 
       <main className="container mx-auto p-8">
         <CarouselDemo/>
+
+
+        <Banner_home/>
       </main>
+
 
     </div>
   );
