@@ -1,7 +1,7 @@
 // app/page.tsx
 
 import { Navbar } from '@/components/menu/navbar';
-import { CarouselDemo } from './core/services/servicosCarousel';
+import { CarouselDemo } from '../components/static_fields/servicosCarousel';
 import { Banner_home } from '@/components/static_fields/banner';
 
 export default function HomePage() {

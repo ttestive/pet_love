@@ -36,11 +36,12 @@ const supabase = createClient(
 
 
 // @erick aqui eh a rota para testar a conexão/busca de dados:
-app.get('/animais', async (req, res) => {
+app.get('/animais_clinica', async (req, res) => {
     try {
         console.log('Iniciando consulta Supabase...');
         const { data, error } = await supabase
-            .from('animais')
+            .schema('public')
+            .from('animais_clinica')
             .select('*');
 
         console.log('Response Supabase:', { data, error });
@@ -57,12 +58,57 @@ app.get('/animais', async (req, res) => {
     }
 });
 
+// POST para inserir um novo registro em animais_clinica
+app.post('/animais_clinica', async (req, res) => {
+    try {
+        // Espera receber um JSON com os campos: entrance, type, size, sick, hurted, adopted, race, nome, exit_date, color
+        const {
+            entrance,
+            type,
+            size,
+            sick,
+            hurted,
+            adopted,
+            race,
+            nome,
+            exit_date,
+            color,
+        } = req.body;
+
+        const payload = {
+            entrance,
+            type,
+            size,
+            sick,
+            hurted,
+            adopted,
+            race,
+            nome,
+            exit_date,
+            color,
+        };
+
+        const { data, error } = await supabase
+            .schema('public')
+            .from('animais_clinica')
+            .insert([payload])
+            .select(); // retorna a(s) linha(s) inserida(s)
+
+        if (error) {
+            console.error('Erro no Supabase (insert):', error);
+            return res.status(500).json({ error: error.message });
+        }
+
+        // Retorna o registro inserido
+        res.status(201).json(data && data.length ? data[0] : data);
+    } catch (e) {
+        console.error('Erro interno POST:', e);
+        res.status(500).json({ error: 'Erro interno do servidor.' });
+    }
+});
+
 // --- INICIALIZAÇÃO DO SERVIDOR ---
 app.listen(port, () => {
-
-
-
-});    console.log(`Servidor rodando na porta ${port}`);app.listen(port, () => {
     console.log(`server rodando na porta ${port}`);
     console.log(`conn supabase inicializada.`);
 });
