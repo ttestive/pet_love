@@ -3,6 +3,8 @@
 import { Navbar } from '@/components/menu/navbar';
 import { CarouselDemo } from '../components/static_fields/servicosCarousel';
 import { Banner_home } from '@/components/static_fields/banner';
+import { AnimaisAdocaoCarousel } from '@/components/static_fields/previewCatalog';
+import { Localizacao } from '@/components/localizacao';
 
 export default function HomePage() {
   return (
@@ -16,6 +18,10 @@ export default function HomePage() {
 
 
         <Banner_home/>
+
+        <AnimaisAdocaoCarousel/>
+
+        <Localizacao/>
       </main>
 
 
