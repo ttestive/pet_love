@@ -42,7 +42,13 @@ export default function NovoAnimalPage() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    sick: String(formData.sick),
+                    hurted: String(formData.hurted),
+                    adopted: String(formData.adopted),
+                    entrance: String(formData.entrance)
+                }),
             });
 
             if (!response.ok) {
