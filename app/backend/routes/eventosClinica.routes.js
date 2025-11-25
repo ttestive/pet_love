@@ -1,14 +1,16 @@
 import express from 'express';
 import {
-    getAll,
+    getAllEvents,
     create,
     update,
     remove
-} from '../controllers/animaisControllers.js';
+
+
+} from '../controllers/eventosController.js';
 
 const router = express.Router();
 
-router.get('/', getAll);
+router.get('/', getAllEvents);
 router.post('/', create);
 router.put('/:id', update);
 router.delete('/:id', remove);
