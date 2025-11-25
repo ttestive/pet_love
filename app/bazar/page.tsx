@@ -41,9 +41,9 @@ export default function BazarPage() {
                             <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-500">
                                 <Calendar size={32} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-800 mb-2">Eventos Mensais</h3>
+                            <h3 className="text-xl font-bold text-gray-800 mb-2">Bazar Solidário</h3>
                             <p className="text-gray-600">
-                                Realizamos edições especiais todo mês. Fique atento às nossas redes sociais para as próximas datas!
+                                Moda circular que salva vidas! Realizamos bazares periódicos para arrecadar fundos para a clínica. Fique de olho no nosso Instagram para não perder novidades.
                             </p>
                         </div>
                     </div>
@@ -52,7 +52,11 @@ export default function BazarPage() {
                         <div className="md:w-1/2 bg-gray-200 min-h-[300px] relative">
                             {/* Placeholder for Bazar Image */}
                             <div className="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
-                                <span>Imagem do Bazar</span>
+                                <img
+                                    src="/card_image/img-bazar.png"
+                                    alt="Imagem Bazar"
+                                    className="rounded-2xl shadow-xl w-full h-[400px] object-cover hover:scale-[1.02] transition-transform duration-500"
+                                />
                             </div>
                         </div>
                         <div className="md:w-1/2 p-10 flex flex-col justify-center">

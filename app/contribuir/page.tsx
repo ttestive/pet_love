@@ -60,8 +60,8 @@ export default function ContribuirPage() {
                                     <p className="text-purple-900/70 mb-4">Recebemos doações de ração, medicamentos e produtos de limpeza.</p>
                                 </div>
                                 <div className="bg-[#EC4899]/10 p-6 rounded-2xl text-center">
-                                    <h3 className="font-bold text-[#EC4899] text-xl mb-2">Apadrinhe</h3>
-                                    <p className="text-gray-700 mb-4">Ajude a custear o tratamento de um animal específico até que ele seja adotado.</p>
+                                    <h3 className="font-bold text-[#EC4899] text-xl mb-2">Seja um lar temporário</h3>
+                                    <p className="text-gray-700 mb-4">Fique com um animal específico até que ele seja adotado.</p>
                                 </div>
                             </div>
                         </div>

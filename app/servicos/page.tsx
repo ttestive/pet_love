@@ -12,7 +12,7 @@ export default function ServicesPage() {
                 <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
                     <div
                         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                        style={{ backgroundImage: 'url("/images/hero-services.jpg")' }} // Assuming a placeholder or generic image
+                        style={{ backgroundImage: 'url("/images/hero-services.jpg")' }} 
                     >
                         <div className="absolute inset-0 bg-black/50"></div>
                     </div>
@@ -39,23 +39,22 @@ export default function ServicesPage() {
                                 />
                             </div>
                             <div className="w-full md:w-1/2 space-y-6">
-                                <h2 className="text-4xl font-bold text-gray-800">Cirurgia Geral e Especializada</h2>
+                                <h2 className="text-4xl font-bold text-gray-800">Diagnóstico e Cirurgia</h2>
                                 <p className="text-lg text-gray-600 leading-relaxed">
-                                    Contamos com um centro cirúrgico moderno e equipado para realizar diversos tipos de procedimentos,
-                                    desde castrações eletivas até cirurgias complexas de tecidos moles e ortopédicas.
+                                    A saúde do seu pet começa com um diagnóstico preciso. Realizamos exames laboratoriais essenciais para check-ups de rotina e avaliações pré-cirúrgicas, garantindo total segurança desde a coleta de sangue até procedimentos complexos em nosso centro cirúrgico.
                                 </p>
                                 <ul className="space-y-3 text-gray-600">
                                     <li className="flex items-center gap-2">
                                         <span className="w-2 h-2 bg-[#67BED9] rounded-full"></span>
-                                        Monitoramento anestésico avançado
+                                        Hemograma Completo
                                     </li>
                                     <li className="flex items-center gap-2">
                                         <span className="w-2 h-2 bg-[#67BED9] rounded-full"></span>
-                                        Equipe especializada
+                                        Perfil Hepático e Renal
                                     </li>
                                     <li className="flex items-center gap-2">
                                         <span className="w-2 h-2 bg-[#67BED9] rounded-full"></span>
-                                        Recuperação assistida
+                                        Procedimentos Cirúrgicos Gerais
                                     </li>
                                 </ul>
                                 <a href="https://wa.me/5561982080204" target="_blank" rel="noopener noreferrer" className="inline-block mt-4">

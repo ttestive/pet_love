@@ -12,7 +12,7 @@ export default function CastracaoPage() {
                 <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
                     <div className="bg-[#EC4899] p-12 text-center text-white">
                         <Scissors className="w-20 h-20 mx-auto mb-6 opacity-90" />
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">Castração Gratuita</h1>
+                        <h1 className="text-4xl md:text-5xl font-bold mb-4">Castração</h1>
                         <p className="text-xl opacity-90">Um ato de amor e responsabilidade.</p>
                     </div>
 
@@ -33,12 +33,12 @@ export default function CastracaoPage() {
                                 Como participar?
                             </h3>
                             <p className="mb-4 text-yellow-900/80">
-                                Nosso programa de castração gratuita é destinado a famílias de baixa renda e animais resgatados. O cadastro deve ser feito presencialmente ou através do nosso formulário online (quando disponível).
+                               Nosso programa de castração social visa promover o controle populacional e o bem-estar animal. 
+                            O atendimento é destinado , mediante triagem e verificação de critérios de elegibilidade.
                             </p>
                             <ul className="list-disc list-inside space-y-2 text-yellow-900/80 font-medium">
                                 <li>Animais a partir de 6 meses de idade</li>
                                 <li>Jejum de 8 horas (água e comida) no dia da cirurgia</li>
-                                <li>Exames de sangue pré-operatórios (realizados na clínica)</li>
                             </ul>
                         </div>
 
