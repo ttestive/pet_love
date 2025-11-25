@@ -2,8 +2,6 @@
 
 import express from 'express';
 import cors from 'cors';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import dotenv from 'dotenv';
 import path from 'path';
 // Importa o arquivo de rotas que você definiu
@@ -11,26 +9,7 @@ import eventosRoutes from './routes/eventosClinica.routes.js';
 
 // Carrega variáveis de ambiente (necessário no arquivo principal também)
 dotenv.config({ path: path.resolve(process.cwd(), 'dev.env') }); 
-=======
 import animaisClinicaRoutes from './routes/animaisClinica.routes.js';
->>>>>>> c439bf9 (add rotas ao formulário de adição de animais para adoção e correções de rotas GET)
-=======
-<<<<<<< Updated upstream
-import animaisClinicaRoutes from './routes/animaisClinica.routes.js';
-=======
-<<<<<<< HEAD
-import dotenv from 'dotenv';
-import path from 'path';
-// Importa o arquivo de rotas que você definiu
-import eventosRoutes from './routes/eventosClinica.routes.js'; 
-
-// Carrega variáveis de ambiente (necessário no arquivo principal também)
-dotenv.config({ path: path.resolve(process.cwd(), 'dev.env') }); 
-=======
-import animaisClinicaRoutes from './routes/animaisClinica.routes.js';
->>>>>>> c439bf9 (add rotas ao formulário de adição de animais para adoção e correções de rotas GET)
->>>>>>> Stashed changes
->>>>>>> 46734a9 (Resolve conflitos após stash)
 
 const app = express();
 const port = process.env.PORT || 3001;
