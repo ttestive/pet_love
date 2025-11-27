@@ -1,38 +1,52 @@
-"use client";
+'use client';
 
-import { Navbar } from "@/components/menu/navbar";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { PlusCircle, Trash2 } from "lucide-react";
+import { Navbar } from '@/components/menu/navbar';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { PlusCircle, Trash2, PawPrint } from 'lucide-react';
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "@/components/ui/dialog";
-import { useEffect, useState } from "react";
-import { PawPrint } from "lucide-react";
-import Image from "next/image";
+} from '@/components/ui/dialog';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+
+// Interface atualizada com img_url
+interface Animal {
+    id: number;
+    nome: string;
+    race: string;
+    color: string | null;
+    type: string;
+    size: string;
+    entrance: string;
+    sick: string;
+    hurted: string;
+    adopted: string;
+    img_url: string | null;
+}
+
+const DEFAULT_IMAGE = "/images/cat-avatar.png"; // Certifique-se de ter essa imagem em public/images/
 
 export function GerenciarAnimais() {
-  const [animals, setAnimals] = useState<any[]>([]);
+  const [animals, setAnimals] = useState<Animal[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const [selectedAnimal, setSelectedAnimal] = useState<any | null>(null);
+  const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Novo estado para delete
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [animalToDelete, setAnimalToDelete] = useState<any | null>(null);
+  const [animalToDelete, setAnimalToDelete] = useState<Animal | null>(null);
 
-  const handleAnimalClick = (animal: any) => {
+  const handleAnimalClick = (animal: Animal) => {
     setSelectedAnimal(animal);
     setIsModalOpen(true);
   };
 
-  const openDeleteModal = (animal: any) => {
+  const openDeleteModal = (animal: Animal) => {
     setAnimalToDelete(animal);
     setDeleteModalOpen(true);
   };
@@ -58,6 +72,7 @@ export function GerenciarAnimais() {
     if (!animalToDelete) return;
 
     try {
+      // Adicione seus headers de autenticação aqui se necessário
       const response = await fetch(
         `http://localhost:3001/animais_clinica/${animalToDelete.id}`,
         {
@@ -67,7 +82,7 @@ export function GerenciarAnimais() {
 
       if (!response.ok) throw new Error("Erro ao deletar");
 
-      setAnimals((prev) => prev.filter((a) => a.id !== animalToDelete.id));
+      setAnimals((prev) => prev.filter((a) => a.id !== animalToDelete!.id));
       setDeleteModalOpen(false);
       setAnimalToDelete(null);
     } catch (err) {
@@ -95,6 +110,14 @@ export function GerenciarAnimais() {
               </p>
             </div>
           </div>
+
+          {/* Botão de Novo Cadastro Linkado */}
+          <Link href="/admin/animais/novo">
+            <Button className="bg-[#67BED9] hover:bg-[#5AADC7] text-white">
+                <PlusCircle className="mr-2 h-4 w-4" />
+                Novo Animal
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -112,13 +135,13 @@ export function GerenciarAnimais() {
               >
                 <div className="flex justify-between items-center p-6">
                   <div className="flex items-center gap-5">
-                    <div className="h-20 w-20 bg-gray-200 rounded-full overflow-hidden">
-                      <Image
-                        src={animal.imageUrl || "/images/cat-avatar.png"}
+                    {/* Exibição da Imagem (Avatar) */}
+                    {/* MUDANÇA: Usando <img> padrão para evitar erros de hostname não configurado no Next.js */}
+                    <div className="h-20 w-20 bg-gray-200 rounded-full overflow-hidden relative flex-shrink-0">
+                      <img
+                        src={animal.img_url || DEFAULT_IMAGE}
                         alt={animal.nome}
-                        width={80}
-                        height={80}
-                        className="object-cover"
+                        className="object-cover w-full h-full"
                       />
                     </div>
                     <div>
@@ -126,6 +149,11 @@ export function GerenciarAnimais() {
                       <p className="text-gray-600">
                         {animal.race} • {animal.color || "Cor não informada"}
                       </p>
+                      <div className="flex gap-2 text-sm text-gray-500 mt-1">
+                        <span className="capitalize">{animal.type}</span>
+                        <span>•</span>
+                        <span>{animal.size}</span>
+                      </div>
                     </div>
                   </div>
 
@@ -156,18 +184,35 @@ export function GerenciarAnimais() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>{selectedAnimal?.nome}</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-gray-800">{selectedAnimal?.nome}</DialogTitle>
           </DialogHeader>
 
           {selectedAnimal && (
-            <div className="space-y-3">
-              <p><strong>Raça:</strong> {selectedAnimal.race}</p>
-              <p><strong>Cor:</strong> {selectedAnimal.color}</p>
+            <div className="space-y-4">
+              {/* Imagem Grande no Modal */}
+              <div className="w-full h-56 bg-gray-100 rounded-lg overflow-hidden relative">
+                 <img
+                    src={selectedAnimal.img_url || DEFAULT_IMAGE}
+                    alt={selectedAnimal.nome}
+                    className="object-cover w-full h-full"
+                 />
+              </div>
+
+              <div className="grid grid-cols-2 gap-y-2 text-sm">
+                  <p><strong className="text-gray-700">Raça:</strong> {selectedAnimal.race}</p>
+                  <p><strong className="text-gray-700">Cor:</strong> {selectedAnimal.color || '-'}</p>
+                  <p><strong className="text-gray-700">Tipo:</strong> {selectedAnimal.type}</p>
+                  <p><strong className="text-gray-700">Porte:</strong> {selectedAnimal.size}</p>
+                  <p><strong className="text-gray-700">Entrada:</strong> {new Date(selectedAnimal.entrance).toLocaleDateString()}</p>
+                  <p><strong className="text-gray-700">Adotado:</strong> <span className={selectedAnimal.adopted === 'Sim' ? 'text-green-600 font-bold' : ''}>{selectedAnimal.adopted === 'Sim' ? 'Sim' : 'Não'}</span></p>
+                  <p><strong className="text-gray-700">Doente:</strong> {selectedAnimal.sick === 'Sim' ? 'Sim' : 'Não'}</p>
+                  <p><strong className="text-gray-700">Ferido:</strong> {selectedAnimal.hurted === 'Sim' ? 'Sim' : 'Não'}</p>
+              </div>
             </div>
           )}
 
           <Button
-            className="w-full mt-4 bg-[#67BED9]"
+            className="w-full mt-4 bg-[#67BED9] hover:bg-[#5AADC7]"
             onClick={() => setIsModalOpen(false)}
           >
             Fechar
