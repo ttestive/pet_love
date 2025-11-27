@@ -64,9 +64,13 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center">
-          <Link href="/admin">
-            <Avatar className="h-9 w-9 border-2 border-white cursor-pointer hover:opacity-80 transition-opacity">
-              <AvatarImage src="/images/cat-avatar.png" alt="User Avatar" />
+          <Link href="/admin/login">
+            <Avatar className="h-9 w-9 border-0 border-white cursor-pointer transition-transform duration-300 hover:scale-110">
+              <AvatarImage 
+                src="/card_image/cat-avatar.png" 
+                alt="User Avatar" 
+                className="object-cover scale-150" 
+              />
               <AvatarFallback className="bg-white text-[#67BED9] font-semibold">PV</AvatarFallback>
             </Avatar>
           </Link>
