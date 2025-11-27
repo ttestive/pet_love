@@ -1,27 +1,38 @@
-import * as AuthService from '../services/authService.js';
+import { createUser, login } from '../services/authService.js'
 
-export const login = async (req, res) => {
-    const { email, senha } = req.body;
+export async function postUser(req, res) {
+  try {
+    const { name, password } = req.body
 
-    if (!email || !senha) {
-        return res.status(400).json({ error: 'Email e senha são obrigatórios.' });
+    if (!name || !password) {
+      return res.status(400).json({ message: 'Parâmetro faltando: name e password são obrigatórios.' })
     }
 
-    try {
-        // Chama o serviço de login
-        const sessionData = await AuthService.loginUsuario(email, senha);
-        
-        // Retorna o token para o front-end
-        return res.status(200).json({
-            message: 'Login realizado com sucesso',
-            token: sessionData.token,
-            user: {
-                id: sessionData.user.id,
-                email: sessionData.user.email
-            }
-        });
+    const newUser = await createUser(name, password)
 
-    } catch (error) {
-        return res.status(401).json({ error: 'Email ou senha inválidos.' });
+    return res.status(201).json(newUser)
+
+  } catch (error) {
+    return res.status(500).json({ message: error.message })
+  }
+}
+
+export async function postLogin(req, res) {
+  try {
+    const { name, password } = req.body
+
+    if (!name || !password) {
+      return res.status(400).json({ message: 'Parâmetro faltando: name e password são obrigatórios.' })
     }
-};
+
+    const user = await login(name, password)
+
+    return res.status(200).json({
+      message: 'Login realizado com sucesso',
+      user
+    })
+
+  } catch (error) {
+    return res.status(400).json({ message: error.message })
+  }
+}
